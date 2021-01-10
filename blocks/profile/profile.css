@@ -1,0 +1,24 @@
+.profile {
+  margin: 0 auto;
+  padding: calc(38.25/320*100%) 0 calc(36/320*100%);
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  grid-template-areas:
+  "avatar avatar"
+  "title edit-button"
+  "subtitle subtitle"
+  "add-button add-button";
+}
+
+@media screen and (min-width: 990px) {
+  .profile {
+    padding: calc(36.25/1280*100%) 0 calc(45.25/1280*100%);
+    grid-template-columns: 168.75px max-content repeat(2, auto);
+    grid-template-areas:
+    "avatar title edit-button add-button"
+    "avatar subtitle . add-button";
+   }
+}

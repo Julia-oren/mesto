@@ -1,0 +1,11 @@
+.element__image {
+  max-width: 282px;
+  max-height: 282px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border-style: none;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  display: block;
+}

@@ -1,0 +1,20 @@
+.header {
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: calc(28/320*100%);
+  padding-left: calc(27/320*100%);
+  padding-bottom: calc(31.6/320*100%);
+  margin: 0;
+  box-sizing: border-box;
+  border-bottom:1px solid rgba(84, 84, 84, .7);
+}
+
+@media screen and (min-width: 990px) {
+  .header  {
+    padding-top: calc(45/1280*100%);
+    padding-left: 0;
+    padding-bottom: calc(41/1280*100%);
+  }
+}

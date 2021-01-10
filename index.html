@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="pages/index.css">
+</head>
+
+<body class="page">
+  <div class="page__contener">
+    <header class="header">
+      <img src="./images/header_logo.svg" alt="Логотип" class="header__logo">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img src="./images/profile_foto (1).jpg" alt="Аватар" class="profile__avatar">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button class="profile__edit-button" type="button" name="edit"></button>
+        <p class="profile__activity">Исследователь океана</p>
+        <button class="profile__add-button" type="button" name="add"></button>
+      </section>
+      <section class="elements">
+        <div class="element">
+          <img src="./images/karachaevsk.jpg" alt="Карачаево-черкесия" class="element__image">
+          <div class="element__signature">
+            <h2 class="element__title">Карачаево-Черкесия</h2>
+            <button class="element__like-button" type="button" name="add"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img src="./images/elbrus.png" alt="Гора Эльбрус" class="element__image">
+          <div class="element__signature">
+            <h2 class="element__title">Гора Эльбрус</h2>
+            <button class="element__like-button" type="button" name="add"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img src="./images/dombay.jpg" alt="Домбай" class="element__image">
+          <div class="element__signature">
+            <h2 class="element__title">Домбай</h2>
+            <button class="element__like-button" type="button" name="add"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img src="./images/cappadocia.jpg" alt="Каппадокия" class="element__image">
+          <div class="element__signature">
+            <h2 class="element__title">Каппадокия</h2>
+            <button class="element__like-button" type="button" name="add"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img src="./images/indonesia.jpg" alt="Индонезия" class="element__image">
+          <div class="element__signature">
+            <h2 class="element__title">Индонезия</h2>
+            <button class="element__like-button" type="button" name="add"></button>
+          </div>
+        </div>
+        <div class="element">
+          <img src="./images/kyoto.jpg" alt="Киото" class="element__image">
+          <div class="element__signature">
+            <h2 class="element__title">Киото</h2>
+            <button class="element__like-button" type="button" name="add"></button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__author">&copy; 2020, Юлия Чугунова</p>
+    </footer>
+       <section class="popup">
+       <form class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input type="text" class="popup__field" name="name" id="name" value="" placeholder="Имя">
+        <input type="text" class="popup__field"  name="activity" id="activity" value="" placeholder="О себе">
+        <input type="submit" name="save" value="Сохранить" class="popup__button-save">
+        <div class="popup__button-close"></div>
+      </form>
+    </section>
+  </div>
+  <script src="./scripts/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.footer {
+  max-width: 100%;
+  padding-top: calc(48/320*100%);
+  padding-left: calc(19/320*100%);
+  padding-bottom: calc(36/320*100%);
+}
+
+@media screen and (min-width: 990px){
+  .footer {
+    padding-top: calc(67/1280*100%);
+    padding-bottom: calc(60/1280*100%);
+    padding-left: 0;
+  }
+}

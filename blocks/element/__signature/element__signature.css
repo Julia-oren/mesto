@@ -1,0 +1,13 @@
+.element__signature {
+  display: flex;
+  background-color: #FFFFFF;
+  margin: 0;
+  padding-top: 25px;
+  padding-bottom: 31px;
+  padding-left: 21px;
+  padding-right: 15px;
+  border-radius: 0 0 10px 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

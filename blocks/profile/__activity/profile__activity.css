@@ -1,0 +1,22 @@
+.profile__activity {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.875rem;
+  line-height: 17px;
+  text-align: center;
+  grid-area: subtitle;
+  margin: 0;
+  margin-bottom: 36px;
+  padding: 0;
+}
+
+@media screen and (min-width: 990px) {
+  .profile__activity {
+    font-size: 1.125rem;
+    line-height: 22px;
+    text-align: start;
+    margin-bottom: 0;
+    margin-top: 16px;
+  }
+}
