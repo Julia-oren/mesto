@@ -1,7 +1,7 @@
 let openButton = document.querySelector('.profile__edit-button'); //Определили кнопку, которая редактирует профиль//
 let popup = document.querySelector('.popup'); //Определили элемента отвечаещего за отображение попапа//
 let closeButton = popup.querySelector('.popup__button-close');
-
+let buttonSave = popup.querySelector('.popup__button-save');
 
 let togglePopup = () => {
   popup.classList.toggle('popup_opened');
@@ -17,12 +17,6 @@ let openPopup = () => {
   job.value = jobProfile.textContent;
 }
 
-
-
-openButton.addEventListener('click', togglePopup);
-openButton.addEventListener('click', openPopup );
-closeButton.addEventListener('click', togglePopup);
-
 //установка отслеживания действия пользователя - открытие попапа, закрытие попапа
 
 popup.addEventListener('click', (event) => {
@@ -35,8 +29,9 @@ popup.addEventListener('click', (event) => {
 // Находим форму в DOM
 let formElement = popup.querySelector('.popup__container');
 
+
 function handleFormSubmit (evt) {
-  evt.preventDefault();
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
 // Находим поля формы в DOM
 let nameInput = popup.querySelector('#name');
@@ -50,3 +45,9 @@ jobProfile.textContent = jobInput.value;
 formElement.addEventListener('submit', handleFormSubmit);
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
+
+
+openButton.addEventListener('click', togglePopup);
+openButton.addEventListener('click', openPopup );
+closeButton.addEventListener('click', togglePopup);
+buttonSave.addEventListener('click', togglePopup);
