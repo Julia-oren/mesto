@@ -1,5 +1,4 @@
 .profile__activity {
-  font-family: Inter;
   font-style: normal;
   font-weight: normal;
   font-size: 0.875rem;
@@ -9,6 +8,9 @@
   margin: 0;
   margin-bottom: 36px;
   padding: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 990px) {

@@ -2,12 +2,13 @@ let openButton = document.querySelector('.profile__edit-button'); //Опреде
 let popup = document.querySelector('.popup'); //Определили элемента отвечаещего за отображение попапа//
 let closeButton = popup.querySelector('.popup__button-close');
 let buttonSave = popup.querySelector('.popup__button-save');
+let openPopup = document.querySelector('.profile__edit-button');
 
 let togglePopup = () => {
   popup.classList.toggle('popup_opened');
 }
 
-let openPopup = () => {
+let textForm = () => {
   popup.classList.add('popup_opened');
   let name = popup.querySelector('#name');
   let job = popup.querySelector('#activity');
@@ -22,7 +23,7 @@ let openPopup = () => {
 popup.addEventListener('click', (event) => {
   if (event.target === event.currentTarget){
     togglePopup();
-    openPopup();
+    textForm();
   }
 }) //закрытие попапа при клике за область контейнера с попапоп
 
@@ -48,6 +49,6 @@ formElement.addEventListener('submit', handleFormSubmit);
 
 
 openButton.addEventListener('click', togglePopup);
-openButton.addEventListener('click', openPopup );
+openPopup.addEventListener('click', textForm);
 closeButton.addEventListener('click', togglePopup);
 buttonSave.addEventListener('click', togglePopup);

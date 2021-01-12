@@ -3,7 +3,7 @@
   margin: 0;
   min-width: 22px;
   min-height: 19px;
-  background-image: url(../../../images/Vector_like.svg);
+  background-image: url("../../../images/Vector_like.svg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

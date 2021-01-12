@@ -30,5 +30,6 @@
     justify-self: end;
     margin: 0;
     max-height: 50px;
+    background-size: 22px 22px;
   }
 }
