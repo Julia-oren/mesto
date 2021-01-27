@@ -6,24 +6,22 @@ let openPopup = document.querySelector('.profile__edit-button');
 
 let togglePopup = () => {
   popup.classList.toggle('popup_opened');
-}
-
-let textForm = () => {
-  popup.classList.add('popup_opened');
+ if (popup.classList.contains('popup_opened')) {
   let name = popup.querySelector('#name');
   let job = popup.querySelector('#activity');
   let nameProfile = document.querySelector('.profile__name');
   let jobProfile = document.querySelector('.profile__activity');
   name.value = nameProfile.textContent;
   job.value = jobProfile.textContent;
+ }
 }
+
 
 //установка отслеживания действия пользователя - открытие попапа, закрытие попапа
 
 popup.addEventListener('click', (event) => {
   if (event.target === event.currentTarget){
     togglePopup();
-    textForm();
   }
 }) //закрытие попапа при клике за область контейнера с попапоп
 
@@ -49,6 +47,5 @@ formElement.addEventListener('submit', handleFormSubmit);
 
 
 openButton.addEventListener('click', togglePopup);
-openPopup.addEventListener('click', textForm);
 closeButton.addEventListener('click', togglePopup);
 buttonSave.addEventListener('click', togglePopup);
