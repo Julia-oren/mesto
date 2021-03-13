@@ -5,10 +5,13 @@
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  display: none;
   justify-content: center;
   align-items: start;
   padding: 123px 0 0;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .7s, visibility .7s ease;
 }
 
 @media screen and (min-width: 990px) {

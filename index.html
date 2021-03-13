@@ -20,65 +20,53 @@
         <button class="profile__edit-button" type="button" name="edit"></button>
         <p class="profile__activity">Исследователь океана</p>
         <button class="profile__add-button" type="button" name="add"></button>
+
       </section>
       <section class="elements">
-        <div class="element">
-          <img src="./images/karachaevsk.jpg" alt="Карачаево-черкесия" class="element__image">
-          <div class="element__signature">
-            <h2 class="element__title">Карачаево-Черкесия</h2>
-            <button class="element__like-button" type="button" name="add"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/elbrus.png" alt="Гора Эльбрус" class="element__image">
-          <div class="element__signature">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like-button" type="button" name="add"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/dombay.jpg" alt="Домбай" class="element__image">
-          <div class="element__signature">
-            <h2 class="element__title">Домбай</h2>
-            <button class="element__like-button" type="button" name="add"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/cappadocia.jpg" alt="Каппадокия" class="element__image">
-          <div class="element__signature">
-            <h2 class="element__title">Каппадокия</h2>
-            <button class="element__like-button" type="button" name="add"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/indonesia.jpg" alt="Индонезия" class="element__image">
-          <div class="element__signature">
-            <h2 class="element__title">Индонезия</h2>
-            <button class="element__like-button" type="button" name="add"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img src="./images/kyoto.jpg" alt="Киото" class="element__image">
-          <div class="element__signature">
-            <h2 class="element__title">Киото</h2>
-            <button class="element__like-button" type="button" name="add"></button>
-          </div>
-        </div>
+        <ul class="elements__zone">
+        </ul>
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__author">&copy; 2020, Юлия Чугунова</p>
+      <p class="footer__author">&copy; 2021, Юлия Чугунова</p>
     </footer>
-       <section class="popup">
-       <form class="popup__container" name="popup">
+    <div class="popup" id="popup_edit">
+      <form class="popup__container" id="container-edit"  name="popup">
         <h2 class="popup__title">Редактировать профиль</h2>
         <input type="text" class="popup__field" name="name" id="name" value="" placeholder="Имя">
-        <input type="text" class="popup__field"  name="activity" id="activity" value="" placeholder="О себе">
+        <input type="text" class="popup__field" name="activity" id="activity" value="" placeholder="О себе">
         <input type="submit" name="save" value="Сохранить" class="popup__button-save">
-        <div class="popup__button-close"></div>
+        <div class="popup__button-close" id="button-close_edit"></div>
       </form>
-    </section>
+    </div>
+    <div class="popup" id="popup_add">
+      <form class="popup__container" id="container-add" name="popup">
+        <h2 class="popup__title">Новое место</h2>
+        <input type="text" class="popup__field" name="place" id="place" value="" placeholder="Название">
+        <input type="url" class="popup__field" name="url-place" id="url-place" value="" placeholder="Ссылка на картинку">
+        <input type="submit" name="create" value="Создать" id="create" class="popup__button-save">
+        <div class="popup__button-close" id="button-close_add"></div>
+      </form>
+    </div>
   </div>
+  <div class="popup popup_image"  id="popup_image">
+    <div class="popup__container-image">
+    <img src="./images/karachaevsk.jpg" alt="Карачаево-Черкессия" class="popup__big-image">
+    <h2 class="popup__big-image-caption">Карачаево-Черкессия</h2>
+    <div class="popup__button-close"  id="button-close_image"></div>
+  </div>
+  </div>
+<template class="element__template">
+          <li class="element">
+            <img src="./images/karachaevsk.jpg" alt="Карачаево-Черкессия" class="element__image">
+            <button class="element__delete-button" type="button" name="delete"></button>
+            <div class="element__signature">
+              <h2 class="element__title"></h2>
+              <button class="element__like-button" type="button" name="like"></button>
+            </div>
+          </li>
+</template>
   <script src="./scripts/index.js"></script>
 </body>
+
 </html>

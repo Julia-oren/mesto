@@ -1,0 +1,9 @@
+.popup_image {
+  padding: 136px 0 0;
+}
+
+@media screen and (min-width: 990px) {
+  .popup_image {
+    padding: 90px 0 0;
+  }
+}

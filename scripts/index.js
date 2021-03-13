@@ -1,51 +1,188 @@
-let openButton = document.querySelector('.profile__edit-button'); //Определили кнопку, которая редактирует профиль//
-let popup = document.querySelector('.popup'); //Определили элемента отвечаещего за отображение попапа//
-let closeButton = popup.querySelector('.popup__button-close');
-let buttonSave = popup.querySelector('.popup__button-save');
-let openPopup = document.querySelector('.profile__edit-button');
+const openButtonEdit = document.querySelector('.profile__edit-button'); //Определили кнопку, которая редактирует профиль//
+const popup = document.querySelector('.popup'); //Определили элемента отвечаещего за отображение попапа//
+const buttonSave = document.querySelector('.popup__button-save');
+const openButtonAdd = document.querySelector('.profile__add-button');
+const openPopupEdit = document.querySelector('#popup_edit');
+const openPopupAdd = document.querySelector('#popup_add');
+const formElementEdit = popup.querySelector('#container-edit');
 
-let togglePopup = () => {
-  popup.classList.toggle('popup_opened');
- if (popup.classList.contains('popup_opened')) {
-  let name = popup.querySelector('#name');
-  let job = popup.querySelector('#activity');
-  let nameProfile = document.querySelector('.profile__name');
-  let jobProfile = document.querySelector('.profile__activity');
-  name.value = nameProfile.textContent;
-  job.value = jobProfile.textContent;
- }
+const closePopupAdd = document.querySelector('#button-close_add');
+const closePopupEdit = document.querySelector('#button-close_edit');
+const closePopupImage = document.querySelector('#button-close_image');
+const nameInput = popup.querySelector('#name');
+const jobInput = popup.querySelector('#activity');
+const nameProfile = document.querySelector('.profile__name');
+const jobProfile = document.querySelector('.profile__activity');
+const formElementAdd = document.querySelector('#container-add');
+const buttonCreateCard = formElementAdd.querySelector('#create'); // кнопка сохранить формы добавления
+const elementTemplate = document.querySelector(".element__template");
+const elementsZone = document.querySelector(".elements__zone");
+const openImage = document.querySelector('.element__image');
+const openPopupImage = document.querySelector('#popup_image');
+
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+
+
+
+function createCardDomNode(item) {
+const newElement = elementTemplate.content.cloneNode(true);
+const elementTitle = newElement.querySelector(".element__title");
+const elementLinkImage = newElement.querySelector(".element__image");
+const deleteButton =  newElement.querySelector(".element__delete-button");
+elementTitle.textContent = item.name;
+elementLinkImage.src = item.link;
+elementLinkImage.alt = item.name;
+
+elementLinkImage.addEventListener ('click', openBigImage); //открытие большой картинки
+deleteButton.addEventListener ('click', deleteCard); //удаление карточки
+
+
+newElement.querySelector('.element__like-button').addEventListener('click', function toPutLike (evt) {
+  evt.target.classList.toggle('element__like-button_active')
+}); // лайк
+
+return newElement
 }
 
 
-//установка отслеживания действия пользователя - открытие попапа, закрытие попапа
+function renderList () {
+  const element= initialCards.map(createCardDomNode);
+  elementsZone.append(...element);
+}
 
-popup.addEventListener('click', (event) => {
-  if (event.target === event.currentTarget){
-    togglePopup();
-  }
-}) //закрытие попапа при клике за область контейнера с попапоп
+function createCardNew (evt) {
+  evt.preventDefault();
+  const placeTitle = formElementAdd.querySelector('#place');
+  const placeLink = formElementAdd.querySelector('#url-place');
+  const placeNewTitle = placeTitle.value;
+  const placeNewLink = placeLink.value;
+  const newPlace = createCardDomNode({name: placeNewTitle, link: placeNewLink});
 
-// Находим форму в DOM
-let formElement = popup.querySelector('.popup__container');
+  elementsZone.prepend(newPlace);
+
+  placeTitle.value = '';
+  placeLink.value = '';
+}
+
+renderList();
+
+formElementAdd.addEventListener('submit', createCardNew);
+
+function openBigImage(evt) {
+  const bigImageTarget = evt.target;
+  const textBigImage = bigImageTarget.parentNode.querySelector('.element__title').textContent
+  const urlBigImage = bigImageTarget.parentNode.querySelector('.element__image').src;
+  const altBigImage = bigImageTarget.parentNode.querySelector('.element__image').alt;
+  const popupBigimage = document.querySelector(".popup__big-image");
+  const popupBigImageCaption = document.querySelector(".popup__big-image-caption");
+  popupBigImageCaption.textContent=textBigImage;
+  popupBigimage.src=urlBigImage;
+  openPopupImage.alt=altBigImage;
+
+  openPopup(openPopupImage);
+}
+
+function deleteCard(evt) {
+  const target = evt.target;
+  const currentCart = target.closest('.element');
+
+  currentCart.remove();
+}
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+} //общая функция открытия
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+} //общая функция закрытия
+
+
+// Автоматическое заполнение полей при открытии формы редактирования данных
+function fillindPopupEdit() {
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
+  openPopup(openPopupEdit);
+}
 
 
 function handleFormSubmit (evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-
-// Находим поля формы в DOM
-let nameInput = popup.querySelector('#name');
-let jobInput = popup.querySelector('#activity');
-let nameProfile = document.querySelector('.profile__name');
-let jobProfile = document.querySelector('.profile__activity');
-nameProfile.textContent = nameInput.value;
-jobProfile.textContent = jobInput.value;
+  nameProfile.textContent = nameInput.value;
+  jobProfile.textContent = jobInput.value;
 }
 
-formElement.addEventListener('submit', handleFormSubmit);
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
+formElementEdit.addEventListener('submit', handleFormSubmit);
+
+openButtonEdit.addEventListener('click', function (){
+  fillindPopupEdit();
+});
+
+openButtonAdd.addEventListener('click', function () {
+  openPopup(openPopupAdd);
+});
 
 
-openButton.addEventListener('click', togglePopup);
-closeButton.addEventListener('click', togglePopup);
-buttonSave.addEventListener('click', togglePopup);
+
+openPopupEdit.addEventListener('click', (event) => {
+  if (event.target === event.currentTarget){
+    closePopup(openPopupEdit);
+  }
+});
+
+openPopupAdd.addEventListener('click', (event) => {
+  if (event.target === event.currentTarget){
+    closePopup(openPopupAdd);
+  }
+});
+
+
+closePopupAdd.addEventListener('click', function () {
+  closePopup(openPopupAdd);
+});//закрытие формы добавления
+
+closePopupEdit.addEventListener('click', function () {
+  closePopup(openPopupEdit);
+}); //закрытие формы редактирования
+
+closePopupImage.addEventListener('click', function () {
+  closePopup(openPopupImage);
+});
+
+buttonSave.addEventListener('click', function () {
+  closePopup(popup);
+});//вызов функции при закрытии и сохранении формы редактирования данных
+
+
+buttonCreateCard.addEventListener('click', function () {
+  closePopup(openPopupAdd);
+});
+
+
