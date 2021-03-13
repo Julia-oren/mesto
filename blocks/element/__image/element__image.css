@@ -10,5 +10,9 @@
   border-radius: 10px 10px 0 0;
   display: block;
   position: relative;
+  transition: opacity .5s linear .2s;
+}
 
+.element__image:hover {
+  opacity: 0.8;
 }
