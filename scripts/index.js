@@ -1,5 +1,4 @@
 const buttonOpenEdit = document.querySelector('.profile__edit-button'); //Определили кнопку, которая редактирует профиль//
-const popup = document.querySelector('.popup'); //Определили элемента отвечаещего за отображение попапа//
 const buttonSave = document.querySelector('.popup__button-save');
 const buttonOpenAdd = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('#popup_edit');
@@ -19,6 +18,7 @@ const elementsZone = document.querySelector(".elements__zone");
 const popupOpenImage = document.querySelector('#popup_image');
 const popupBigImage = document.querySelector(".popup__big-image");
 const popupBigImageCaption = document.querySelector(".popup__big-image-caption");
+
 
 
 function createCardDomNode(item) {
@@ -121,6 +121,23 @@ buttonOpenAdd.addEventListener('click', function () {
 });
 
 
+// закрытие попапов по Esc
+document.addEventListener('keydown', (event) => closePopupEscape(event));
+
+function closePopupEscape(event) {
+  closeEscape(popupEdit);
+  closeEscape(popupAdd);
+  closeEscape(popupOpenImage);
+};
+
+function closeEscape (popup) {
+  if (event.key === 'Escape') {
+    closePopup(popup)
+}
+};
+
+
+// закрытие по клику на оверлей
 
 popupEdit.addEventListener('mousedown', (event) => {
   if (event.target === event.currentTarget){
@@ -134,7 +151,15 @@ popupAdd.addEventListener('mousedown', (event) => {
   }
 });
 
+popupOpenImage.addEventListener('mousedown', (event) => {
+  if (event.target === event.currentTarget){
+    closePopup(popupOpenImage);
+  }
+});
 
+
+
+// закрытие по клику на кнопку закрытия
 popupCloseAdd.addEventListener('click', function () {
   closePopup(popupAdd);
 });//закрытие формы добавления
