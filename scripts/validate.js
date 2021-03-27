@@ -18,19 +18,20 @@ const setInputListeners = (form, formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(form.inputSelector));
   const buttonElement = formElement.querySelector(form.submitButtonSelector);
 
-  inputList.forEach(inputElement => {inputElement.addEventListener('input', () => {
-        checkInput (form, formElement, inputElement);  //проверка валидностей полей
-        toggleButtonState (form, inputList, buttonElement)
-      }); //переключение состояния конопки (вкл/выкл)
+  inputList.forEach(inputElement => {
+    inputElement.addEventListener('input', () => {
+      checkInput(form, formElement, inputElement);  //проверка валидностей полей
+      toggleButtonState(form, inputList, buttonElement)
+    }); //переключение состояния конопки (вкл/выкл)
 
-      toggleButtonState(form, inputList, buttonElement);
-    }
+    toggleButtonState(form, inputList, buttonElement);
+  }
   );
 }
 
 //Функция выключения кнопки
 const toggleButtonState = (form, inputList, buttonElement) => {
-  if(hasInvalidInput(inputList) || EmptyAllInputs(inputList)) {
+  if (hasInvalidInput(inputList) || checkFilledAllInputs(inputList)) {
     buttonElement.classList.add(form.inactiveButtonClass); //добавление стиля не активной кнопки
     buttonElement.setAttribute('disable', true); //отключение кнопки
   } else {
@@ -41,7 +42,7 @@ const toggleButtonState = (form, inputList, buttonElement) => {
 
 
 //функция проверки заполнения всех форм
-const EmptyAllInputs = (inputList) => {
+const checkFilledAllInputs = (inputList) => {
   return !inputList.some(inputElement =>
     inputElement.value.length > 0);
 };
@@ -57,7 +58,7 @@ const hasInvalidInput = (inputList) => {
 
 // Функция, которая добавляет класс с ошибкой
 const showInputError = (form, formElement, inputElement) => {
-  const errorElement =formElement.querySelector(`#${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(form.inputErrorClass);//показ  ошибки
   errorElement.textContent = inputElement.validationMessage;
   errorElement.classList.add(form.errorClass);//показ красной линии
@@ -65,15 +66,15 @@ const showInputError = (form, formElement, inputElement) => {
 
 // Функция, которая удаляет класс с ошибкой
 const hideInputError = (form, formElement, inputElement) => {
-  const errorElement =formElement.querySelector(`#${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.remove(form.inputErrorClass);//удаление  ошибки
   errorElement.classList.remove(form.errorClass);//удаление красной линии
 };
 
 //функция проверки поля на валидацию
 const checkInput = (form, formElement, inputElement) => {
-  if(inputElement.validity.valid){
-  hideInputError(form, formElement, inputElement); // отображать красную линию и не выводить ошибку
+  if (inputElement.validity.valid) {
+    hideInputError(form, formElement, inputElement); // отображать красную линию и не выводить ошибку
   } else {
     showInputError(form, formElement, inputElement); //  отображать красную линию и  выводить ошибку
   }
@@ -83,9 +84,9 @@ const enableValidation = (form) => {
   const formList = Array.from(document.querySelectorAll(form.formSelector));
 
   formList.forEach(formElement => {
-      formElement.addEventListener('submit', (event) => {event.preventDefault();});
+    formElement.addEventListener('submit', (event) => { event.preventDefault(); });
 
-      setInputListeners(form, formElement);
+    setInputListeners(form, formElement);
   });//Навешивание слушателей для полей формы
 }
 
