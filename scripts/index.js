@@ -13,7 +13,7 @@ const nameProfile = document.querySelector('.profile__name');
 const jobProfile = document.querySelector('.profile__activity');
 const formElementAdd = document.querySelector('#container-add');
 const buttonCreateCard = formElementAdd.querySelector('#create'); // кнопка сохранить формы добавления
-const elementTemplate = document.querySelector(".element__template");
+const elementTemplate = document.querySelector(".element__template"); // использован в _getTemplate
 const elementsZone = document.querySelector(".elements__zone");
 const popupOpenImage = document.querySelector('#popup_image');
 const popupBigImage = document.querySelector(".popup__big-image");
@@ -23,14 +23,22 @@ const placeLink = formElementAdd.querySelector('#url-place');
 
 
 
+
+//TodoList
+//отрисовка на странице
+// содержит форму и элементы списка
+
+
+
+
 function createCardDomNode(item) {
-  const newElement = elementTemplate.content.cloneNode(true);
-  const elementTitle = newElement.querySelector(".element__title");
-  const elementLinkImage = newElement.querySelector(".element__image");
+  const newElement = elementTemplate.content.cloneNode(true); // добавлен в _getTemplate
+  const elementTitle = newElement.querySelector(".element__title"); // добавлен в _generateCard
+  const elementLinkImage = newElement.querySelector(".element__image"); // добавлен в _generateCard
   const buttonDelete = newElement.querySelector(".element__delete-button");
-  elementTitle.textContent = item.name;
-  elementLinkImage.src = item.link;
-  elementLinkImage.alt = item.name;
+  elementTitle.textContent = item.name; // добавлен в _generateCard
+  elementLinkImage.src = item.link; // добавлен в _generateCard
+  elementLinkImage.alt = item.name; // добавлен в _generateCard
 
 
   buttonDelete.addEventListener('click', deleteCard); //удаление карточки
