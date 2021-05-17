@@ -45,10 +45,6 @@ function handleCreateCard(evt) {
   elementsZone.prepend(card.generateCard(newPlace)); //отображение карточек
 
 
- placeTitle.value = '';
- placeLink.value = '';
-
-
   closePopup(popupAdd);
 }
 
@@ -98,6 +94,8 @@ buttonOpenEdit.addEventListener('click', function () {
 buttonOpenAdd.addEventListener('click', function () {
   validateFormAdd.reset()
   openPopup(popupAdd);
+  placeTitle.value = '';
+  placeLink.value = '';
 
 });
 
