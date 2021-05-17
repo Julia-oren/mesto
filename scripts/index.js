@@ -34,7 +34,7 @@ initialCards.forEach((item) => {
 
 
 
-function createCardNew(evt) {
+function handleCreateCard(evt) {
   evt.preventDefault();
 
   const placeNewTitle = placeTitle.value;
@@ -44,14 +44,16 @@ function createCardNew(evt) {
 
   elementsZone.prepend(card.generateCard(newPlace)); //отображение карточек
 
-  placeTitle.value = '';
-  placeLink.value = '';
+
+ placeTitle.value = '';
+ placeLink.value = '';
+
 
   closePopup(popupAdd);
 }
 
 
-formElementAdd.addEventListener('submit', createCardNew);
+formElementAdd.addEventListener('submit', handleCreateCard);
 
 
 export function openPopup(popup) {
@@ -88,13 +90,14 @@ formElementEdit.addEventListener('submit', submitProfileForm);
 
 
 buttonOpenEdit.addEventListener('click', function () {
+  validateFormEdit.reset()
   fillInputsEdit();
-  validateFormEdit.enableValidation()
+
 });
 
 buttonOpenAdd.addEventListener('click', function () {
+  validateFormAdd.reset()
   openPopup(popupAdd);
-  validateFormAdd.enableValidation()
 
 });
 
@@ -120,9 +123,13 @@ function closePopupOverley(event) {
 // закрытие по клику на кнопку закрытия
 popupCloseAdd.addEventListener('click', function () {
   closePopup(popupAdd);
+
 });//закрытие формы добавления
 
 popupCloseEdit.addEventListener('click', function () {
   closePopup(popupEdit);
+
 }); //закрытие формы редактирования
 
+validateFormAdd.enableValidation()
+validateFormEdit.enableValidation()

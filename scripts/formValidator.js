@@ -66,6 +66,7 @@ export class FormValidator {
     const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);//удаление  ошибки
     errorElement.classList.remove(this._errorClass);//удаление красной линии
+    inputElement.textContent = ' ';
   };
 
   //функция проверки поля на валидацию
@@ -77,15 +78,16 @@ export class FormValidator {
     }
   };
 
+  reset() {
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement)
+    })
+}
+
 
 
   enableValidation() {
-    this._setInputListeners(this._formElement);
-    this._toggleButtonState(this._inputList, this._buttonElement)
-    this._inputList.forEach((inputElement) => {
-      this._hideInputError(inputElement)
-      this._toggleButtonState(this._inputList, this._buttonElement)
-    })
+    this._setInputListeners();
   }
 
 }
