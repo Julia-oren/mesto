@@ -43,7 +43,8 @@ function handleCreateCard(evt) {
   const card = new Card(newPlace, '.element__template');
 
   elementsZone.prepend(card.generateCard(newPlace)); //отображение карточек
-
+  placeTitle.value = '';
+  placeLink.value = '';
 
   closePopup(popupAdd);
 }
