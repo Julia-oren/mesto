@@ -29,7 +29,7 @@ const validateFormAdd = new FormValidator(formCofiguration, popupAdd);
 initialCards.forEach((item) => {
   const card = new Card(item, '.element__template'); //объект data передан аргументом
   const cardElement = card.generateCard();
-  document.querySelector('.elements__zone').append(cardElement); // Добавляем в DOM
+  elementsZone.append(cardElement); //Добавляем в DOM
 });  //обошли массив, подготовили карточку к публикации и вернули результат, опубликовали карточку в .elements__zone
 
 
@@ -42,7 +42,7 @@ function handleCreateCard(evt) {
   const newPlace = { name: placeNewTitle, link: placeNewLink };
   const card = new Card(newPlace, '.element__template');
 
-  elementsZone.prepend(card.generateCard(newPlace)); //отображение карточек
+  elementsZone.prepend(card.generateCard()); //отображение карточек
   placeTitle.value = '';
   placeLink.value = '';
 
