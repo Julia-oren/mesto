@@ -1,13 +1,21 @@
 
-import { openPopup, closePopup, popupOpenImage, popupBigImage, popupBigImageCaption, popupCloseImage } from './index.js'
+import {
+  popupOpenImage,
+  popupBigImage,
+  popupBigImageCaption,
+  popupCloseImage } from '../utils/constants.js'
+
+  // import { openPopup, closePopup } from '../pages/index.js'
+
 
 
 export class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._alt = data.alt;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }// данные name,link, alt переданы в объект data
 
   _getTemplate() {
@@ -31,41 +39,28 @@ export class Card {
   }
 
   _deleteCard() {
-    const buttonDelete = this._element.querySelector(".element__delete-button");
-    const currentCart = buttonDelete.closest('.element');
-    currentCart.remove();
+    this._element.remove()
+     this._element = null;
   }//?
 
   _toPutLike() {
     this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active')
   }; //Лайк
 
-  _handleOpenImagePopup() {
-    popupBigImageCaption.textContent = this._name;
-    popupBigImage.src = this._link;
-    popupBigImage.alt = this._name;
 
-    openPopup(popupOpenImage)
-  } // открытие большой картинки
-
-  _handleCloseImagePopup() {
-    popupBigImageCaption.textContent = '';
-    popupBigImage.src = '';
-    popupOpenImage.alt = '';
-
-    closePopup(popupOpenImage)
-  } //закрытие большой картинки
 
   _setEventListeners() {
     const elementImage = this._element.querySelector(".element__image");
     const likeButton = this._element.querySelector(".element__like-button");
     const buttonDelete = this._element.querySelector(".element__delete-button");
+
+
+
     elementImage.addEventListener('click', () => {
-      this._handleOpenImagePopup();
-    });//открытие попапа с картинкой
-    popupCloseImage.addEventListener('click', () => {
-      this._handleCloseImagePopup()
-    }); //закрытие большой картинки при клике на "крест"
+      this._handleCardClick(this._name, this._link);
+    });//открытие попапа с картинкой использование PopupWithImage.open
+
+
     likeButton.addEventListener('click', () => {
       this._toPutLike()
     }); // лайк
